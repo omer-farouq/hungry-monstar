@@ -1,9 +1,11 @@
 
 //------------- handle search button-----------
 const errorMessage = document.getElementById("errorMessage");
+const searchField = document.getElementById('mealInput');
+const searchButton = document.getElementById("searchButton");
 // const mealsContainer = document.getElementById("meals-container");
 const searchFood = () => {
-    const searchField = document.getElementById('mealInput'); 
+     
     const searchData = searchField.value      
     const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchData}`;
     fetch(url)
@@ -101,4 +103,11 @@ function dataErase(mealItemName){
     mealItemsInformation.innerHTML = "";
 }
 
+
+searchField.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      searchButton.click();
+    }
+  });
 
