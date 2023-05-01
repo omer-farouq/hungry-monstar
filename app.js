@@ -43,7 +43,7 @@ fetch(url)
 const displayDetails = mealItemDetails => {
     const mealItemsInformation = document.getElementById('mealItemsInfo');
     mealItemDetails.forEach(items => {
-        const mealItemsInformations = document.innerHTML('div');
+        const mealItemsInformations = document.createElement('div');
         mealItemsInformations.className = 'ingredients-info';
         console.log(items.strMeal);
         const itemsName = document.createElement('h1');
