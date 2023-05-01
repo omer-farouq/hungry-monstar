@@ -1,12 +1,24 @@
 
 //------------- handle search button-----------
+const errorMessage = document.getElementById("errorMessage");
+// const mealsContainer = document.getElementById("meals-container");
 const searchFood = () => {
     const searchField = document.getElementById('mealInput'); 
     const searchData = searchField.value      
     const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchData}`;
     fetch(url)
     .then(res => res.json())
-    .then(data => displayMealInfo(data.meals))
+    .then(data => {
+        if(searchData.length > 0){
+            // mealsContainer.innerHTML = "";
+            displayMealInfo(data.meals);
+            errorMessage.innerHTML = "";
+        }
+        else{
+            errorMessage.innerHTML = "তুমি কিছু লিখো নাই ";
+        }
+        
+    })
 }
 
 const displayMealInfo = mealData => {
