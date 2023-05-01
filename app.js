@@ -12,6 +12,8 @@ const searchFood = () => {
 const displayMealInfo = mealData => {
     console.log(mealData);
     const mealContainer = document.getElementById('mealCard');
+    dataErase('mealCard');
+    dataErase('mealItemsInfo');
     mealData.forEach(item => {
         const foodItemName = document.createElement('div');
         foodItemName.className = 'meal-items';
@@ -42,6 +44,7 @@ fetch(url)
 
 const displayDetails = mealItemDetails => {
     const mealItemsInformation = document.getElementById('mealItemsInfo');
+    dataErase('mealItemsInfo');
     mealItemDetails.forEach(items => {
         const mealItemsInformations = document.createElement('div');
         mealItemsInformations.className = 'ingredients-info';
@@ -77,7 +80,13 @@ const displayDetails = mealItemDetails => {
         mealItemsInformation.appendChild(mealItemsInformations);
 
     });
+    // mealItemsInformation.innerText = "";
 
+}
+
+function dataErase(mealItemName){
+    const mealItemsInformation = document.getElementById(mealItemName);
+    mealItemsInformation.innerHTML = "";
 }
 
 
