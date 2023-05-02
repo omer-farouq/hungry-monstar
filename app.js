@@ -6,22 +6,26 @@ const searchButton = document.getElementById("searchButton");
 // const mealsContainer = document.getElementById("meals-container");
 const searchFood = () => {
      
-    const searchData = searchField.value      
+    const searchData = searchField.value 
+    // ----------- clear data ------------
+    searchField.value = '';
+    // ----------- error handle -------------
+    if (searchData === ''){
+        errorMessage.innerText = "তুমি কিছু লিখো নাই 🙄";
+        return;
+    }     
     const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchData}`;
     fetch(url)
     .then(res => res.json())
-    .then(data => {
-        if(searchData.length > 0){
-            // mealsContainer.innerHTML = "";
-            displayMealInfo(data.meals);
-            errorMessage.innerHTML = "";
-        }
-        else{
-            errorMessage.innerHTML = "তুমি কিছু লিখো নাই ";
-        }
-        
-    })
-}
+    .then(data => displayMealInfo(data.meals))
+    .catch(error => {
+        errorMessage.innerText = "আজাইরা খোঁজা-খুঁজি বাদ দিয়া ঘুমাও 😐";
+    
+    });
+    document.getElementById('mealInput').value = "";
+    errorMessage.innerText = "";
+
+};
 
 const displayMealInfo = mealData => {
     console.log(mealData);
